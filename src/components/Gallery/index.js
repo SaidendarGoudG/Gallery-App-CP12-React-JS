@@ -75,22 +75,20 @@ const imagesList = [
 ]
 
 class Gallery extends Component {
-  state = {imgUrl: imagesList[0].imageUrl, imgAlt: imagesList[0].imageAltText}
+  state = {imageId: imagesList[0].id}
 
   updateImage = id => {
-    this.setState({
-      imgUrl: imagesList[id].imageUrl,
-      imgAlt: imagesList[id].imageAltText,
-    })
+    this.setState({imageId: id})
   }
 
   render() {
-    const {imgUrl, imgAlt} = this.state
+    const {imageId} = this.state
+    const {imageUrl, imageAltText} = imagesList[imageId]
 
     return (
       <div className="app-container">
         <div className="gallery-container">
-          <img className="image" src={imgUrl} alt={imgAlt} />
+          <img className="image" src={imageUrl} alt={imageAltText} />
           <h1 className="heading">Nature Photography</h1>
           <p className="description">Nature Photography by Rahul</p>
           <ul className="thumbnails-list-container">
@@ -98,6 +96,7 @@ class Gallery extends Component {
               <ThumbnailItem
                 eachImage={eachImage}
                 key={eachImage.id}
+                isActive={imageId === eachImage.id}
                 updateImage={this.updateImage}
               />
             ))}
