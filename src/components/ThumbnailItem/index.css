@@ -6,3 +6,7 @@
   width: 100%;
   opacity: 0.5;
 }
+
+.thumbnail {
+  opacity: 1;
+}
